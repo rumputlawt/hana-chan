@@ -8,6 +8,7 @@ import { build } from "~/utils/build.ts";
 const builder = new Builder();
 tailwind(builder, app, {});
 if (Deno.args.includes("build")) {
+	await build("production");
 	await builder.build(app);
 } else {
 	await build("development");

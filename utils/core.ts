@@ -1,10 +1,12 @@
 import { createDefine } from "fresh";
 import { type Command } from "~/utils/command.ts";
-import { API } from "@discordjs/core";
+import { API, type APIGuildMember } from "@discordjs/core";
 import { REST } from "@discordjs/rest";
 
-// deno-lint-ignore no-empty-interface
-export interface State {}
+export interface State {
+	member?: APIGuildMember;
+	error?: string;
+}
 
 export const define = createDefine<State>();
 
