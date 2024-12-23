@@ -6,10 +6,10 @@ export function Deploy() {
 	>("null");
 
 	return (
-		<div class="flex justify-between items-center p-2 outline outline-black rounded-lg">
-			<div class="flex flex-col gap-1">
+		<div class="flex justify-between items-center p-4 bg-slate-100 rounded-lg">
+			<div class="flex flex-col px-1">
 				<p class="text-md font-semibold">Deploy Commands</p>
-				<p class="text-sm">Sync application commands to discord.</p>
+				<p class="text-sm">Sync application commands to Discord.</p>
 			</div>
 			<div class="flex items-center gap-2">
 				{status === "success" && (
@@ -26,7 +26,7 @@ export function Deploy() {
 					</svg>
 				)}
 				<button
-					class="bg-black px-4 py-1.5 text-white rounded-full disabled:opacity-50"
+					class="bg-black px-4 py-1.5 text-white font-semibold rounded-full disabled:opacity-50"
 					onClick={async () => {
 						setStatus("deploying");
 						const result = await fetch("/api/deploy", {
@@ -34,7 +34,7 @@ export function Deploy() {
 						});
 						setStatus(result.status === 204 ? "success" : "failed");
 					}}
-					disabled={status === "deploying"}
+					disabled={status === "deploying" || status === "success"}
 				>
 					{status === "deploying" ? "Deploying" : "Deploy"}
 				</button>
