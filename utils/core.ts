@@ -6,6 +6,8 @@ import { REST } from "@discordjs/rest";
 export interface State {
 	member?: APIGuildMember;
 	error?: string;
+	title?: string;
+	description?: string;
 }
 
 export const define = createDefine<State>();

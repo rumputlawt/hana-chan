@@ -76,6 +76,7 @@ export async function createSession(member: APIGuildMember) {
 		name: "access_token",
 		value: token.data,
 		expires: token.expire * 1000,
+		httpOnly: true,
 		path: "/",
 	});
 
