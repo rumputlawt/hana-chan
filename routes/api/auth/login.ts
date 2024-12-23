@@ -55,7 +55,6 @@ export const handler = define.handlers({
 					]);
 
 					if (eligible) {
-						console.log(eligible);
 						return await createSession(member);
 					} else {
 						throw new HttpError(
