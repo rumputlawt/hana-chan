@@ -1,12 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.fresh-gradient {
-	background-color: rgb(134, 239, 172);
-	background-image: linear-gradient(
-		to right bottom,
-		rgb(219, 234, 254),
-		rgb(187, 247, 208),
-		rgb(254, 249, 195)
-	);
-}

@@ -41,7 +41,7 @@ export async function createToken(member: APIGuildMember) {
 	} else {
 		const encodedKey = await importPKCS8(privateKey, JWT_ALG);
 
-		const expire = (Math.floor(Date.now()) / 1000) + 60 * 60;
+		const expire = (Math.floor(Date.now()) / 1000) + (60 * 60);
 		const jwt = new SignJWT({ ...member }).setProtectedHeader({
 			typ: "JWT",
 			alg: JWT_ALG,

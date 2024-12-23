@@ -22,9 +22,12 @@ export async function build(mode: Mode) {
         ]
     }`;
 
+	const manifestFile = mode === "production" ? "bot.gen.ts" : "dev.gen.ts";
+
 	await Deno.writeTextFile(
-		mode === "production" ? "bot.gen.ts" : "dev.gen.ts",
+		manifestFile,
 		manifest,
 	);
-	await new Deno.Command(Deno.execPath(), { args: ["fmt"] }).output();
+	await new Deno.Command(Deno.execPath(), { args: ["fmt", manifestFile] })
+		.output();
 }
