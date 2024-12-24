@@ -99,7 +99,7 @@ export async function reportMessage(
 			}
 		}
 
-		if (interaction.member?.user.id !== author.id) {
+		if (interaction.member?.user.id === author.id) {
 			await bot.interactions.editReply(
 				interaction.application_id,
 				interaction.token,
