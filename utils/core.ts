@@ -11,7 +11,7 @@ export interface State {
 }
 
 export const define = createDefine<State>();
-
+export const kv = await Deno.openKv();
 export const bot = new API(new REST().setToken(Deno.env.get("BOT_TOKEN")!));
 
 export interface Manifest {

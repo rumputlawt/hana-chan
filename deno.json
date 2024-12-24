@@ -42,7 +42,8 @@
 			"dom",
 			"dom.asynciterable",
 			"dom.iterable",
-			"deno.ns"
+			"deno.ns",
+			"deno.unstable"
 		],
 		"jsx": "precompile",
 		"jsxImportSource": "preact",
@@ -54,5 +55,8 @@
 			"html",
 			"head"
 		]
-	}
+	},
+	"unstable": [
+		"kv"
+	]
 }
