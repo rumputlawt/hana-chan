@@ -19,7 +19,7 @@ export default messageContextMenuCommand({
 			case MessageType.ChatInputCommand:
 			case MessageType.ThreadStarterMessage:
 			case MessageType.Default: {
-				queueMicrotask(() => reportMessage(interaction));
+				queueMicrotask(() => reportMessage(interaction, message));
 				return deferReplyInteraction(true);
 			}
 			default: {

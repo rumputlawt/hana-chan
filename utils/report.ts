@@ -1,4 +1,5 @@
 import {
+	type APIMessage,
 	type APIMessageApplicationCommandInteraction,
 	APIThreadChannel,
 	ButtonStyle,
@@ -12,13 +13,13 @@ import {
 	userMention,
 } from "@discordjs/formatters";
 import { bot, kv } from "~/utils/core.ts";
-import { retrieveResolvedMessage } from "~/utils/interaction.ts";
 import { avatar } from "~/utils/avatar.ts";
 import { DiscordAPIError } from "@discordjs/rest";
 import { embedColor } from "~/config.ts";
 
 export async function reportMessage(
 	interaction: APIMessageApplicationCommandInteraction,
+	message: APIMessage,
 ) {
 	const botId = Deno.env.get("BOT_ID");
 	const reportChannelId = Deno.env.get("REPORT_CHANNEL_ID");
@@ -38,7 +39,7 @@ export async function reportMessage(
 		}
 
 		const { author, content, embeds, attachments, poll, id: messageId } =
-			retrieveResolvedMessage(interaction);
+			message;
 
 		const reportKey = ["reports", "messages", messageId];
 		const reportId = await kv.get<string>(reportKey);
