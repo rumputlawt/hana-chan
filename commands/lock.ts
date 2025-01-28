@@ -18,7 +18,7 @@ export default slashCommand({
 		options: [
 			{
 				name: "message",
-				description: "hfsfisf",
+				description: "Why do u want to lock this channel?",
 				type: ApplicationCommandOptionType.String,
 			},
 		],
