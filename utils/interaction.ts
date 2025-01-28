@@ -1,11 +1,23 @@
 import {
+	APIApplicationCommandInteractionDataOption,
+	APIApplicationCommandInteractionDataStringOption,
 	type APIInteractionResponseCallbackData,
 	type APIInteractionResponseChannelMessageWithSource,
 	APIInteractionResponseDeferredChannelMessageWithSource,
 	APIMessageApplicationCommandInteraction,
+	ApplicationCommandOptionType,
 	InteractionResponseType,
 	MessageFlags,
 } from "@discordjs/core";
+
+export function getStringOption(
+	options: APIApplicationCommandInteractionDataOption[],
+	name: string,
+): APIApplicationCommandInteractionDataStringOption | undefined {
+	return options.find((opt) =>
+		opt.name === name && opt.type === ApplicationCommandOptionType.String
+	) as APIApplicationCommandInteractionDataStringOption;
+}
 
 export function retrieveResolvedMessage(
 	interaction: APIMessageApplicationCommandInteraction,
