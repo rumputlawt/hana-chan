@@ -25,6 +25,7 @@
 		"@discordjs/core": "npm:@discordjs/core@^2.0.0/http-only",
 		"@discordjs/formatters": "npm:@discordjs/formatters@^0.5.0",
 		"@discordjs/rest": "npm:@discordjs/rest@^2.4.0",
+		"@gfx/canvas-wasm": "jsr:@gfx/canvas-wasm@^0.4.2",
 		"@std/encoding": "jsr:@std/encoding@^1.0.6",
 		"@std/fs": "jsr:@std/fs@^1.0.7",
 		"@std/http": "jsr:@std/http@^1.0.12",

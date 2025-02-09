@@ -9,6 +9,13 @@ export async function build(mode: Mode) {
 			exts: ["ts"],
 		}),
 	);
+	const messageComponentFiles = await Array.fromAsync(
+		walk("./messageComponents", {
+			includeDirs: false,
+			includeSymlinks: false,
+			exts: ["ts"],
+		}),
+	);
 
 	const manifest = `
     ${
@@ -17,11 +24,20 @@ export async function build(mode: Mode) {
 		)
 			.join("\n")
 	}
+
+	${
+		messageComponentFiles.map((ctx, id) =>
+			`import $$${id} from "~/messageComponents/${ctx.name}"`
+		).join("\n")
+	}
     
     export default {
         commands: [
             ${commandFiles.map((_ctx, id) => `$${id}`).join(",\n")}
-        ]
+        ],
+		messageComponents: [
+		    ${messageComponentFiles.map((_ctx, id) => `$$${id}`).join(",\n")}
+		]
     }`;
 
 	const manifestFile = mode === "production" ? "bot.gen.ts" : "dev.gen.ts";

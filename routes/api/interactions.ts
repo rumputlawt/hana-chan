@@ -5,6 +5,7 @@ import {
 	type APIChatInputApplicationCommandInteraction,
 	type APIInteraction,
 	APIMessageApplicationCommandInteraction,
+	APIMessageComponentButtonInteraction,
 	APIUserApplicationCommandInteraction,
 	InteractionResponseType,
 	InteractionType,
@@ -19,6 +20,10 @@ import {
 	loadCommands,
 } from "~/utils/command.ts";
 import { replyInteraction } from "~/utils/interaction.ts";
+import {
+	isButtonComponent,
+	loadMessageComponents,
+} from "~/utils/messageComponents.ts";
 
 export const config: RouteConfig = {
 	skipAppWrapper: true,
@@ -81,6 +86,31 @@ export const handler = define.handlers({
 							} else if (isUserContextMenuCommand(command)) {
 								response = await command.execute(
 									interaction as APIUserApplicationCommandInteraction,
+								);
+							}
+						}
+
+						return Response.json(response);
+					}
+					case InteractionType.MessageComponent: {
+						const messageComponents = await loadMessageComponents(
+							ctx.config.mode,
+						);
+						const component = messageComponents.find((component) =>
+							interaction.data.custom_id ===
+								component.data.customId &&
+							interaction.data.component_type ===
+								component.data.type
+						);
+
+						let response: CommandResponse = replyInteraction({
+							content: "component not found??",
+						});
+
+						if (component) {
+							if (isButtonComponent(component)) {
+								response = await component.execute(
+									interaction as APIMessageComponentButtonInteraction,
 								);
 							}
 						}

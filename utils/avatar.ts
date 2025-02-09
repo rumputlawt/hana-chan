@@ -4,6 +4,6 @@ import { calculateUserDefaultAvatarIndex } from "@discordjs/rest";
 
 export function avatar(user: APIUser) {
 	return user.avatar
-		? bot.rest.cdn.avatar(user.id, user.avatar)
+		? bot.rest.cdn.avatar(user.id, user.avatar, { size: 1024 })
 		: bot.rest.cdn.defaultAvatar(calculateUserDefaultAvatarIndex(user.id));
 }
